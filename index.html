@@ -87,7 +87,7 @@
   /* ===== Pour ajouter une societe : copier un bloc { ... } ci-dessous ===== */
   const companies = [
     {
-      name: "Legor Group S.p.A.",
+      name: "Legor Group S.p.A. (siege)",
       city: "Bressanvido (Vicenza)",
       address: "Via del Lavoro 1, 36050 Bressanvido (VI)",
       phone: "+39 0444 467911",
@@ -96,15 +96,12 @@
       placeId: "ChIJV9BUUmPSeEcR5atjJ9tvHUg"
     },
     {
-      name: "Essezeta Srl",
+      name: "Legor - sede commerciale di Arezzo",
       city: "Arezzo",
-      address: "Via Tommaso Edison 51, 52100 Arezzo",
-      phone: "+39 0575 401552",
-      site: "http://www.esse-zeta.com/",
-      lat: 43.4692833, lng: 11.8414752,
-      placeId: "ChIJsaoGQ-DsKxMRXiqwkYqgrbE"
+      address: "Strada A 35, Z.I. San Zeno, Arezzo",
+      site: "https://www.legor.com/"
     },
-      {
+    {
       name: "Essezeta Srl",
       city: "Arezzo",
       address: "Via Tommaso Edison 51, 52100 Arezzo",
@@ -115,17 +112,160 @@
     },
     {
       name: "Riace Wax (Riacetech S.r.l.)",
+      contact: "Giovanni Lejkowski",
       city: "Arezzo",
       address: "Via di Pescaiola 85/G, 52041 Viciomaggio (AR)",
       phone: "+39 0575 987229",
+      phone2: "+39 335 8356021",
       site: "http://www.riacewax.com/",
       lat: 43.4284184, lng: 11.774626,
       placeId: "ChIJKTYYQkbpKxMRVfMkJCvyaR8"
+    },
+    {
+      name: "Luigi Dal Trozzo",
+      contact: "Mauro Carrea",
+      city: "Valenza",
+      address: "Via dell'Artigianato 47/49, 15048 Valenza (AL)",
+      phone: "+39 0131 924344",
+      email: "mauro.carrea@luigidaltrozzo.it",
+      lat: 45.0176654, lng: 8.6259507
+    },
+    {
+      name: "LBMA Good Delivery Refiner",
+      contact: "Daniel Caruso",
+      role: "Responsabile filiale di Valenza",
+      city: "Arezzo",
+      address: "Via Gramsci, Arezzo, Italy",
+      phone: "+39 0131 846404"
+    },
+    {
+      name: "Diamond C2 Tools - C2 di Cipriani Ivan & C. s.a.s.",
+      city: "Bassano del Grappa (Vicenza)",
+      address: "Via delle Rose 11, 36061 Bassano del Grappa (VI)",
+      phone: "+39 0424 566716",
+      whatsapp: "393292244000",
+      lat: 45.7329085, lng: 11.7063205,
+      placeId: "ChIJw89lzEfQeEcREETY19nufoc"
+    },
+    {
+      name: "BTT Precious Metal Plants",
+      contact: "Andrea Zoeddu",
+      city: "Marciano della Chiana (Arezzo)",
+      address: "Via Vombarbia 16, 52047 Marciano della Chiana (AR)",
+      phone: "+39 0575 356841",
+      phone2: "+39 340 4239422"
+    },
+    {
+      name: "Stellina - Macchine per orafi / Goldsmith machines",
+      contact: "Joseph Noujeim",
+      city: "Trezzano sul Naviglio (Milano)",
+      address: "Via Mario Pagano 29, 20090 Trezzano sul Naviglio (MI)",
+      phone: "+39 02 48405819",
+      phone2: "+39 335 8110134"
+    },
+    {
+      name: "Fabricant bijoutier",
+      contact: "Hamidatene Fouzi",
+      city: "Alger (Algerie)",
+      address: "65 rue Djenane Achabou 03, Cheraga, Alger",
+      phone: "+213 561 762 689"
+    },
+    {
+      name: "Citis Arcobaleno",
+      contact: "Marco Mattesini",
+      city: "Siena",
+      address: "Via Leonida Cialfi 25, 53100 Siena",
+      phone: "+39 0575 1420250",
+      note: "Autre adresse : Strada E n.1, Loc. San Zeno, 52100 Arezzo"
+    },
+    {
+      name: "OPI Group",
+      contact: "Andrea Veronese",
+      role: "CEO",
+      city: "Isola Vicentina (Vicenza)",
+      address: "Via Europa 45 H, 36033 Isola Vicentina (VI)",
+      phone: "+39 340 0076763",
+      note: "SDI : M5UXCRI"
+    },
+    {
+      name: "Giustitech",
+      contact: "David Rossi",
+      role: "Export sales",
+      city: "Civitella in Val di Chiana (Arezzo)",
+      address: "Via Segre 11, 52041 Pieve al Toppo, Civitella in Val di Chiana (AR)",
+      phone: "+39 0575 497959",
+      phone2: "+39 331 8508054"
+    },
+    {
+      name: "Doxa s.n.c. di Conti Gabriele & C.",
+      city: "Civitella in Val di Chiana (Arezzo)",
+      address: "Via Molinara 87/L, Tegoleto, 52041 Civitella in Val di Chiana (AR)",
+      phone: "+39 0575 410271"
+    },
+    {
+      name: "Orchidea Preziosi",
+      city: "Arezzo",
+      address: "Via del Gavardello 59, 52100 Arezzo"
+    },
+    {
+      name: "Emporio dell'Orafo - GS Macchinari",
+      city: "Arezzo",
+      address: "Via Einstein 27/29, 52100 Arezzo",
+      phone: "+39 0575 382366",
+      phone2: "+39 338 3369592",
+      lat: 43.4706363, lng: 11.8477703,
+      placeId: "ChIJoQnJRYORKxMRTI5Jy2KagqQ"
+    },
+    {
+      name: "Luciano Egel",
+      city: "Arezzo",
+      address: "Strada A n.48, San Zeno, 52100 Arezzo",
+      phone: "+39 0575 99389"
+    },
+    {
+      name: "Balestri Technologies",
+      contact: "Giulio Balestri",
+      city: "Capolona (Arezzo)",
+      address: "Via Aldo Moro 9, 52010 Capolona (AR)",
+      phone: "+39 348 7207522"
+    },
+    {
+      name: "Cima Chemicals",
+      city: "Castiglion Fiorentino (Arezzo)",
+      address: "Via Tevere 141, 52043 Castiglion Fiorentino (AR)"
+    },
+    {
+      name: "Zone Creative",
+      city: "Civitella in Val di Chiana (Arezzo)",
+      address: "Via di Basserone 53, Loc. Badia al Pino, 52041 Civitella in Val di Chiana (AR)",
+      phone: "+39 333 1597221"
+    },
+    {
+      name: "C.I.O.",
+      city: "Arezzo",
+      address: "Zona Industriale S. Zeno, Strada E 36, 52100 Olmo, Arezzo",
+      phone: "+39 0575 959108"
+    },
+    {
+      name: "Lorenzato",
+      contact: "Technology for gold and cosmetic industry",
+      city: "Caldogno (Vicenza)",
+      address: "Via Sette 52, 36030 Caldogno (VI)",
+      phone: "+39 0444 905365"
+    },
+    {
+      name: "Oro Franco di Franco Yuri",
+      city: "Bolzano Vicentino (Vicenza)",
+      address: "Via dell'Artigianato 13, 36050 Bolzano Vicentino (VI)",
+      phone: "+39 0444 350920"
     }
   ];
   /* ======================================================================= */
 
   function mapUrl(c) {
+    if (c.lat == null) {
+      return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(c.address);
+    }
     let u = "https://www.google.com/maps/search/?api=1&query=" +
             encodeURIComponent(c.lat + "," + c.lng);
     if (c.placeId) u += "&query_place_id=" + encodeURIComponent(c.placeId);
@@ -145,10 +285,15 @@
     const cards = items.map(c => `
       <article class="card">
         <h3>${esc(c.name)}</h3>
+        ${c.contact ? `<p><strong>${esc(c.contact)}</strong>${c.role ? " - " + esc(c.role) : ""}</p>` : ""}
         <p>${esc(c.address)}</p>
+        ${c.note ? `<p>${esc(c.note)}</p>` : ""}
         <a class="map" href="${mapUrl(c)}" target="_blank" rel="noopener">Ouvrir sur la map</a>
         <div class="extra">
           ${c.phone ? `<a href="tel:${c.phone.replace(/\s/g, "")}">${esc(c.phone)}</a>` : ""}
+          ${c.phone2 ? `<a href="tel:${c.phone2.replace(/\s/g, "")}">${esc(c.phone2)}</a>` : ""}
+          ${c.whatsapp ? `<a href="https://wa.me/${c.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ""}
+          ${c.email ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : ""}
           ${c.site ? `<a href="${esc(c.site)}" target="_blank" rel="noopener">Site web</a>` : ""}
         </div>
       </article>`).join("");
