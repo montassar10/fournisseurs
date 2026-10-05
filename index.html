@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fournisseurs en Italie</title>
+<style>
+  :root {
+    --bg: #f1f2ef;
+    --card: #ffffff;
+    --ink: #1c2a2e;
+    --muted: #5d6b6f;
+    --teal: #13474e;
+    --gold: #b8892b;
+    --line: #d9ddd8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111a1c;
+      --card: #1a2629;
+      --ink: #eef1ee;
+      --muted: #9aaaae;
+      --teal: #6fc0c9;
+      --gold: #d8aa4e;
+      --line: #2b3b3f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.45;
+  }
+  header { padding: 28px 16px 8px; max-width: 760px; margin: 0 auto; }
+  h1 { margin: 0 0 4px; font-size: 1.6rem; color: var(--teal); }
+  header p { margin: 0; color: var(--muted); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 8px 16px 40px; }
+  h2 {
+    margin: 28px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--gold);
+    font-size: 1.15rem;
+  }
+  h2 small { font-weight: 400; color: var(--muted); font-size: .85rem; margin-left: 6px; }
+
+  .cards { display: grid; gap: 12px; }
+  @media (min-width: 620px) { .cards { grid-template-columns: 1fr 1fr; } }
+
+  .card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--teal);
+    border-radius: 6px;
+    padding: 14px 14px 12px;
+  }
+  .card:active { background: var(--bg); }
+  .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+  .card p { margin: 0 0 4px; font-size: .95rem; color: var(--muted); }
+
+  /* Toute la carte est cliquable : le lien s'etend sur la carte */
+  .card .map::after { content: ""; position: absolute; inset: 0; }
+  .card .map { color: var(--teal); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 6px; }
+  .card:hover { border-left-color: var(--gold); }
+  .card .map:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+  /* Tel et site restent cliquables au-dessus du lien map */
+  .card .extra { position: relative; z-index: 2; font-size: .95rem; margin-top: 4px; }
+  .card .extra a { color: var(--ink); margin-right: 14px; display: inline-block; padding: 4px 0; }
+
+  .note { color: var(--muted); font-size: .85rem; margin-top: 30px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Fournisseurs en Italie</h1>
+  <p>Touchez une carte pour ouvrir sa position sur la map.</p>
+</header>
+
+<main id="list"></main>
+
+<script>
+  /* ===== Pour ajouter une societe : copier un bloc { ... } ci-dessous ===== */
+  const companies = [
+    {
+      name: "Legor Group S.p.A.",
+      city: "Bressanvido (Vicenza)",
+      address: "Via del Lavoro 1, 36050 Bressanvido (VI)",
+      phone: "+39 0444 467911",
+      site: "https://www.legor.com/",
+      lat: 45.6547267, lng: 11.6596344,
+      placeId: "ChIJV9BUUmPSeEcR5atjJ9tvHUg"
+    },
+    {
+      name: "Essezeta Srl",
+      city: "Arezzo",
+      address: "Via Tommaso Edison 51, 52100 Arezzo",
+      phone: "+39 0575 401552",
+      site: "http://www.esse-zeta.com/",
+      lat: 43.4692833, lng: 11.8414752,
+      placeId: "ChIJsaoGQ-DsKxMRXiqwkYqgrbE"
+    },
+    {
+      name: "Riace Wax (Riacetech S.r.l.)",
+      city: "Arezzo",
+      address: "Via di Pescaiola 85/G, 52041 Viciomaggio (AR)",
+      phone: "+39 0575 987229",
+      site: "http://www.riacewax.com/",
+      lat: 43.4284184, lng: 11.774626,
+      placeId: "ChIJKTYYQkbpKxMRVfMkJCvyaR8"
+    }
+  ];
+  /* ======================================================================= */
+
+  function mapUrl(c) {
+    let u = "https://www.google.com/maps/search/?api=1&query=" +
+            encodeURIComponent(c.lat + "," + c.lng);
+    if (c.placeId) u += "&query_place_id=" + encodeURIComponent(c.placeId);
+    return u;
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+  }
+
+  // Groupement par ville
+  const byCity = {};
+  companies.forEach(c => (byCity[c.city] = byCity[c.city] || []).push(c));
+
+  const html = Object.keys(byCity).sort().map(city => {
+    const items = byCity[city];
+    const cards = items.map(c => `
+      <article class="card">
+        <h3>${esc(c.name)}</h3>
+        <p>${esc(c.address)}</p>
+        <a class="map" href="${mapUrl(c)}" target="_blank" rel="noopener">Ouvrir sur la map</a>
+        <div class="extra">
+          ${c.phone ? `<a href="tel:${c.phone.replace(/\s/g, "")}">${esc(c.phone)}</a>` : ""}
+          ${c.site ? `<a href="${esc(c.site)}" target="_blank" rel="noopener">Site web</a>` : ""}
+        </div>
+      </article>`).join("");
+    return `<section><h2>${esc(city)}<small>${items.length} societe${items.length > 1 ? "s" : ""}</small></h2><div class="cards">${cards}</div></section>`;
+  }).join("");
+
+  document.getElementById("list").innerHTML = html +
+    '<p class="note">Verifiez les adresses par telephone avant de vous deplacer.</p>';
+</script>
+</body>
+</html>
