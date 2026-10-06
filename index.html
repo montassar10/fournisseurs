@@ -2,306 +2,159 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fournisseurs en Italie</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mon carnet Italie</title>
 <style>
-  :root {
-    --bg: #f1f2ef;
-    --card: #ffffff;
-    --ink: #1c2a2e;
-    --muted: #5d6b6f;
-    --teal: #13474e;
-    --gold: #b8892b;
-    --line: #d9ddd8;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #111a1c;
-      --card: #1a2629;
-      --ink: #eef1ee;
-      --muted: #9aaaae;
-      --teal: #6fc0c9;
-      --gold: #d8aa4e;
-      --line: #2b3b3f;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.45;
-  }
-  header { padding: 28px 16px 8px; max-width: 760px; margin: 0 auto; }
-  h1 { margin: 0 0 4px; font-size: 1.6rem; color: var(--teal); }
-  header p { margin: 0; color: var(--muted); }
-
-  main { max-width: 760px; margin: 0 auto; padding: 8px 16px 40px; }
-  h2 {
-    margin: 28px 0 10px;
-    padding-bottom: 6px;
-    border-bottom: 2px solid var(--gold);
-    font-size: 1.15rem;
-  }
-  h2 small { font-weight: 400; color: var(--muted); font-size: .85rem; margin-left: 6px; }
-
-  .cards { display: grid; gap: 12px; }
-  @media (min-width: 620px) { .cards { grid-template-columns: 1fr 1fr; } }
-
-  .card {
-    position: relative;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-left: 5px solid var(--teal);
-    border-radius: 6px;
-    padding: 14px 14px 12px;
-  }
-  .card:active { background: var(--bg); }
-  .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
-  .card p { margin: 0 0 4px; font-size: .95rem; color: var(--muted); }
-
-  /* Toute la carte est cliquable : le lien s'etend sur la carte */
-  .card .map::after { content: ""; position: absolute; inset: 0; }
-  .card .map { color: var(--teal); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 6px; }
-  .card:hover { border-left-color: var(--gold); }
-  .card .map:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
-
-  /* Tel et site restent cliquables au-dessus du lien map */
-  .card .extra { position: relative; z-index: 2; font-size: .95rem; margin-top: 4px; }
-  .card .extra a { color: var(--ink); margin-right: 14px; display: inline-block; padding: 4px 0; }
-
-  .note { color: var(--muted); font-size: .85rem; margin-top: 30px; }
+:root{--bg:#f3f1ec;--card:#fff;--ink:#16252a;--mut:#5f6f73;--line:#e1ddd3;--head:#0f3b40;--gold:#c79a3a;--f:#0f5a62;--h:#7a3b63;--chip:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1719;--card:#17252a;--ink:#edf1ee;--mut:#9fb0b3;--line:#27393d;--head:#0a2a2e;--gold:#e0b552;--f:#6cc3cb;--h:#d99ac0;--chip:#17252a}}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.top{position:sticky;top:0;z-index:10;background:var(--head);color:#fff;padding:calc(12px + env(safe-area-inset-top,0px)) 14px 10px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.wrap{max-width:820px;margin:0 auto}
+h1{margin:0 0 10px;font-size:1.25rem;letter-spacing:.2px}
+h1 span{color:var(--gold)}
+.search{position:relative}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:#6b7b7e}
+.search input{width:100%;border:0;border-radius:12px;padding:12px 40px 12px 40px;font:inherit;background:#fff;color:#16252a}
+.search input:focus{outline:3px solid var(--gold)}
+.search button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:1.4rem;color:#6b7b7e;width:36px;height:36px;cursor:pointer;display:none}
+.tabs{display:flex;gap:6px;margin-top:10px}
+.tabs button{flex:1;border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;padding:9px 6px;border-radius:10px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.tabs button.on{background:var(--gold);border-color:var(--gold);color:#16252a}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 14px 2px;max-width:820px;margin:0 auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:7px 13px;border-radius:99px;font:inherit;font-size:.88rem;cursor:pointer}
+.chips button b{color:var(--mut);font-weight:600;margin-left:4px}
+.chips button.on{background:var(--head);color:#fff;border-color:var(--head)}
+.chips button.on b{color:var(--gold)}
+main{max-width:820px;margin:0 auto;padding:6px 14px calc(40px + env(safe-area-inset-bottom,0px))}
+.count{color:var(--mut);font-size:.85rem;margin:10px 0 0}
+h2{margin:22px 0 10px;font-size:1.1rem;display:flex;align-items:baseline;gap:8px;padding-bottom:7px;border-bottom:2px solid var(--gold)}
+h2 small{color:var(--mut);font-weight:500;font-size:.82rem}
+.grid{display:grid;gap:12px}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--f)}
+.card.h::before{background:var(--h)}
+.card h3{margin:0 0 4px;font-size:1.02rem;line-height:1.25}
+.town{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--f);margin-bottom:4px}
+.card.h .town{color:var(--h)}
+.card p{margin:2px 0;font-size:.92rem;color:var(--mut)}
+.card p.who{color:var(--ink)}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;position:relative;z-index:2}
+.acts a{display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border-radius:99px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.85rem;background:var(--bg)}
+.acts a svg{width:16px;height:16px;flex:none}
+.acts a.map{background:var(--head);color:#fff;border-color:var(--head);font-weight:600}
+.acts a.map::after{content:"";position:absolute;inset:-200px -14px -12px -14px;z-index:-1}
+.acts a.wa{color:#0b7a3b;border-color:#0b7a3b55}
+@media(prefers-color-scheme:dark){.acts a.wa{color:#5fd68f}.acts a.map{background:#1e5d63}}
+.acts a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.empty{text-align:center;color:var(--mut);padding:50px 10px}
 </style>
 </head>
 <body>
-
-<header>
-  <h1>Fournisseurs en Italie</h1>
-  <p>Touchez une carte pour ouvrir sa position sur la map.</p>
-</header>
-
-<main id="list"></main>
+<div class="top"><div class="wrap">
+  <h1>Mon carnet <span>Italie</span></h1>
+  <div class="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input id="q" type="search" placeholder="Rechercher par nom..." autocomplete="off" enterkeyhint="search">
+    <button id="x" aria-label="Effacer">&times;</button>
+  </div>
+  <div class="tabs" id="tabs">
+    <button data-c="" class="on">Tout</button>
+    <button data-c="f">Fournisseurs</button>
+    <button data-c="h">Hotels &amp; restos</button>
+  </div>
+</div></div>
+<div class="chips" id="chips"></div>
+<main><p class="count" id="count"></p><div id="list"></div></main>
 
 <script>
-  /* ===== Pour ajouter une societe : copier un bloc { ... } ci-dessous ===== */
-  const companies = [
-    {
-      name: "Legor Group S.p.A. (siege)",
-      city: "Bressanvido (Vicenza)",
-      address: "Via del Lavoro 1, 36050 Bressanvido (VI)",
-      phone: "+39 0444 467911",
-      site: "https://www.legor.com/",
-      lat: 45.6547267, lng: 11.6596344,
-      placeId: "ChIJV9BUUmPSeEcR5atjJ9tvHUg"
-    },
-    {
-      name: "Legor - sede commerciale di Arezzo",
-      city: "Arezzo",
-      address: "Strada A 35, Z.I. San Zeno, Arezzo",
-      site: "https://www.legor.com/"
-    },
-    {
-      name: "Essezeta Srl",
-      city: "Arezzo",
-      address: "Via Tommaso Edison 51, 52100 Arezzo",
-      phone: "+39 0575 401552",
-      site: "http://www.esse-zeta.com/",
-      lat: 43.4692833, lng: 11.8414752,
-      placeId: "ChIJsaoGQ-DsKxMRXiqwkYqgrbE"
-    },
-    {
-      name: "Riace Wax (Riacetech S.r.l.)",
-      contact: "Giovanni Lejkowski",
-      city: "Arezzo",
-      address: "Via di Pescaiola 85/G, 52041 Viciomaggio (AR)",
-      phone: "+39 0575 987229",
-      phone2: "+39 335 8356021",
-      site: "http://www.riacewax.com/",
-      lat: 43.4284184, lng: 11.774626,
-      placeId: "ChIJKTYYQkbpKxMRVfMkJCvyaR8"
-    },
-    {
-      name: "Luigi Dal Trozzo",
-      contact: "Mauro Carrea",
-      city: "Valenza",
-      address: "Via dell'Artigianato 47/49, 15048 Valenza (AL)",
-      phone: "+39 0131 924344",
-      email: "mauro.carrea@luigidaltrozzo.it",
-      lat: 45.0176654, lng: 8.6259507
-    },
-    {
-      name: "LBMA Good Delivery Refiner",
-      contact: "Daniel Caruso",
-      role: "Responsabile filiale di Valenza",
-      city: "Arezzo",
-      address: "Via Gramsci, Arezzo, Italy",
-      phone: "+39 0131 846404"
-    },
-    {
-      name: "Diamond C2 Tools - C2 di Cipriani Ivan & C. s.a.s.",
-      city: "Bassano del Grappa (Vicenza)",
-      address: "Via delle Rose 11, 36061 Bassano del Grappa (VI)",
-      phone: "+39 0424 566716",
-      whatsapp: "393292244000",
-      lat: 45.7329085, lng: 11.7063205,
-      placeId: "ChIJw89lzEfQeEcREETY19nufoc"
-    },
-    {
-      name: "BTT Precious Metal Plants",
-      contact: "Andrea Zoeddu",
-      city: "Marciano della Chiana (Arezzo)",
-      address: "Via Vombarbia 16, 52047 Marciano della Chiana (AR)",
-      phone: "+39 0575 356841",
-      phone2: "+39 340 4239422"
-    },
-    {
-      name: "Stellina - Macchine per orafi / Goldsmith machines",
-      contact: "Joseph Noujeim",
-      city: "Trezzano sul Naviglio (Milano)",
-      address: "Via Mario Pagano 29, 20090 Trezzano sul Naviglio (MI)",
-      phone: "+39 02 48405819",
-      phone2: "+39 335 8110134"
-    },
-    {
-      name: "Fabricant bijoutier",
-      contact: "Hamidatene Fouzi",
-      city: "Alger (Algerie)",
-      address: "65 rue Djenane Achabou 03, Cheraga, Alger",
-      phone: "+213 561 762 689"
-    },
-    {
-      name: "Citis Arcobaleno",
-      contact: "Marco Mattesini",
-      city: "Siena",
-      address: "Via Leonida Cialfi 25, 53100 Siena",
-      phone: "+39 0575 1420250",
-      note: "Autre adresse : Strada E n.1, Loc. San Zeno, 52100 Arezzo"
-    },
-    {
-      name: "OPI Group",
-      contact: "Andrea Veronese",
-      role: "CEO",
-      city: "Isola Vicentina (Vicenza)",
-      address: "Via Europa 45 H, 36033 Isola Vicentina (VI)",
-      phone: "+39 340 0076763",
-      note: "SDI : M5UXCRI"
-    },
-    {
-      name: "Giustitech",
-      contact: "David Rossi",
-      role: "Export sales",
-      city: "Civitella in Val di Chiana (Arezzo)",
-      address: "Via Segre 11, 52041 Pieve al Toppo, Civitella in Val di Chiana (AR)",
-      phone: "+39 0575 497959",
-      phone2: "+39 331 8508054"
-    },
-    {
-      name: "Doxa s.n.c. di Conti Gabriele & C.",
-      city: "Civitella in Val di Chiana (Arezzo)",
-      address: "Via Molinara 87/L, Tegoleto, 52041 Civitella in Val di Chiana (AR)",
-      phone: "+39 0575 410271"
-    },
-    {
-      name: "Orchidea Preziosi",
-      city: "Arezzo",
-      address: "Via del Gavardello 59, 52100 Arezzo"
-    },
-    {
-      name: "Emporio dell'Orafo - GS Macchinari",
-      city: "Arezzo",
-      address: "Via Einstein 27/29, 52100 Arezzo",
-      phone: "+39 0575 382366",
-      phone2: "+39 338 3369592",
-      lat: 43.4706363, lng: 11.8477703,
-      placeId: "ChIJoQnJRYORKxMRTI5Jy2KagqQ"
-    },
-    {
-      name: "Luciano Egel",
-      city: "Arezzo",
-      address: "Strada A n.48, San Zeno, 52100 Arezzo",
-      phone: "+39 0575 99389"
-    },
-    {
-      name: "Balestri Technologies",
-      contact: "Giulio Balestri",
-      city: "Capolona (Arezzo)",
-      address: "Via Aldo Moro 9, 52010 Capolona (AR)",
-      phone: "+39 348 7207522"
-    },
-    {
-      name: "Cima Chemicals",
-      city: "Castiglion Fiorentino (Arezzo)",
-      address: "Via Tevere 141, 52043 Castiglion Fiorentino (AR)"
-    },
-    {
-      name: "Zone Creative",
-      city: "Civitella in Val di Chiana (Arezzo)",
-      address: "Via di Basserone 53, Loc. Badia al Pino, 52041 Civitella in Val di Chiana (AR)",
-      phone: "+39 333 1597221"
-    },
-    {
-      name: "C.I.O.",
-      city: "Arezzo",
-      address: "Zona Industriale S. Zeno, Strada E 36, 52100 Olmo, Arezzo",
-      phone: "+39 0575 959108"
-    },
-    {
-      name: "Lorenzato",
-      contact: "Technology for gold and cosmetic industry",
-      city: "Caldogno (Vicenza)",
-      address: "Via Sette 52, 36030 Caldogno (VI)",
-      phone: "+39 0444 905365"
-    },
-    {
-      name: "Oro Franco di Franco Yuri",
-      city: "Bolzano Vicentino (Vicenza)",
-      address: "Via dell'Artigianato 13, 36050 Bolzano Vicentino (VI)",
-      phone: "+39 0444 350920"
-    }
-  ];
-  /* ======================================================================= */
+/* Donnees : generees depuis le tableau Excel. n=nom c=f/h r=region t=commune p=contact f=fonction a=adresse ph=tels wa=whatsapp e=emails w=site o=note m=position map */
+const DATA = [{"n": "Fabricant bijoutier", "c": "f", "r": "Algérie", "t": "Alger", "p": "Hamidatene Fouzi", "f": "", "a": "65 rue Djenane Achabou 03, Cheraga, Alger", "ph": [{"tel": "+213561762689", "show": "+213 561762689"}], "wa": ["+213561762689"], "e": [], "w": "", "o": "", "m": "65 rue Djenane Achabou 03, Cheraga, Alger"}, {"n": "C.I.O.", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "", "f": "", "a": "Zona Industriale S. Zeno, Strada E 36, 52100 Olmo, Arezzo", "ph": [{"tel": "+390575959108", "show": "+39 0575959108"}], "wa": [], "e": ["info@cioerizi.it"], "w": "https://www.cioerizi.it", "o": "", "m": "Zona Industriale S. Zeno, Strada E 36, 52100 Olmo, Arezzo"}, {"n": "Emporio dell'Orafo - GS Macchinari", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "Gabriele salvi", "f": "General manager", "a": "Via Einstein 27/29, 52100 Arezzo", "ph": [{"tel": "+390575382366", "show": "+39 0575382366"}, {"tel": "+393383369592", "show": "+39 3383369592"}], "wa": ["+393383369592"], "e": ["gs@gsmacchinari.com"], "w": "https://www.gsmacchinari.com", "o": "", "m": "43.4706363,11.8477703"}, {"n": "Essezeta Srl", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "sergio Zanelli", "f": "", "a": "Via donat cattin,79, 52100 Arezzo", "ph": [{"tel": "+3905751822563", "show": "+39 05751822563"}], "wa": [], "e": ["info@esse-zeta.com"], "w": "http://www.esse-zeta.com/", "o": "", "m": "43.4692833,11.8414752"}, {"n": "LBMA Good Delivery Refiner", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "Daniel Caruso", "f": "Responsabile filiale di Valenza", "a": "Via Gramsci, Arezzo, Italy", "ph": [{"tel": "+390131846404", "show": "+39 0131846404"}], "wa": [], "e": [], "w": "https://www.tcaspa.com", "o": "", "m": "Via Gramsci, Arezzo, Italy"}, {"n": "Legor - sede commerciale di Arezzo", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "Emanuel Bonomo", "f": "sales Representative", "a": "Strada A 35, Z.I. San Zeno, Arezzo 52040 arezzo(AR)", "ph": [{"tel": "+390575998034", "show": "+39 0575998034"}, {"tel": "+393299619838", "show": "+39 3299619838"}], "wa": ["+393299619838"], "e": ["emanuael_b@legor.com"], "w": "https://www.legor.com/", "o": "", "m": "Strada A 35, Z.I. San Zeno, Arezzo 52040 arezzo(AR)"}, {"n": "Luciano Egel", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "", "f": "", "a": "Strada A n.48, San Zeno, 52100 Arezzo", "ph": [{"tel": "+39057599389", "show": "+39 057599389"}], "wa": [], "e": ["info@lucianoegei.com"], "w": "https://www.lucianoegei.com", "o": "", "m": "Strada A n.48, San Zeno, 52100 Arezzo"}, {"n": "Orchidea Preziosi", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "Francesco Richard Casi", "f": "Sales manager", "a": "Via del Gavardello 59, 52100 Arezzo", "ph": [{"tel": "+390575382566", "show": "+39 0575382566"}, {"tel": "+39335354110", "show": "+39 335354110"}], "wa": ["+39335354110"], "e": ["francesco@orchideapreziosi.it"], "w": "https://www.orchideapreziosi.it", "o": "", "m": "Via del Gavardello 59, 52100 Arezzo"}, {"n": "Riace Wax (Riacetech S.r.l.)", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "Giovanni Lejkowski", "f": "", "a": "Via di Pescaiola 85/G, 52041 Viciomaggio (AR)", "ph": [{"tel": "+390575987229", "show": "+39 0575987229"}, {"tel": "+393358356021", "show": "+39 3358356021"}], "wa": ["+393358356021"], "e": [], "w": "http://www.riacewax.com/", "o": "", "m": "43.4284184,11.774626"}, {"n": "Balestri Technologies", "c": "f", "r": "Toscana", "t": "Capolona", "p": "Giulio Balestri", "f": "Technical manager", "a": "Via Aldo Moro 9, 52010 Capolona (AR)", "ph": [{"tel": "+393487207522", "show": "+39 3487207522"}, {"tel": "+390575420673", "show": "+39 0575420673"}], "wa": ["+393487207522"], "e": ["info@balestritechnologies.com"], "w": "https://www.balestritechnologies.com", "o": "", "m": "Via Aldo Moro 9, 52010 Capolona (AR)"}, {"n": "Cima Chemicals", "c": "f", "r": "Toscana", "t": "Castiglion Fiorentino", "p": "", "f": "", "a": "Via Tevere 141, 52043 Castiglion Fiorentino (AR)", "ph": [{"tel": "+390575657267", "show": "+39 0575657267"}], "wa": [], "e": ["info@cimadimagi.it"], "w": "https://www.cimadimagi.com", "o": "", "m": "Via Tevere 141, 52043 Castiglion Fiorentino (AR)"}, {"n": "Doxa s.n.c. di Conti Gabriele & C.", "c": "f", "r": "Toscana", "t": "Civitella in Val di Chiana", "p": "", "f": "", "a": "Via Molinara 87/L, Tegoleto, 52041 Civitella in Val di Chiana (AR)", "ph": [{"tel": "+390575410271", "show": "+39 0575410271"}], "wa": [], "e": ["info@doxaoro.it"], "w": "", "o": "", "m": "Via Molinara 87/L, Tegoleto, 52041 Civitella in Val di Chiana (AR)"}, {"n": "Giustitech", "c": "f", "r": "Toscana", "t": "Civitella in Val di Chiana", "p": "David Rossi", "f": "Export sales", "a": "Via Segre 11, 52041 Pieve al Toppo, Civitella in Val di Chiana (AR)", "ph": [{"tel": "+390575497959", "show": "+39 0575497959"}, {"tel": "+393318508054", "show": "+39 3318508054"}], "wa": ["+393318508054"], "e": [], "w": "https://www.gbmeccanica.com", "o": "", "m": "Via Segre 11, 52041 Pieve al Toppo, Civitella in Val di Chiana (AR)"}, {"n": "Zone Creative", "c": "f", "r": "Toscana", "t": "Civitella in Val di Chiana", "p": "", "f": "", "a": "Via di Basserone 53, Loc. Badia al Pino, 52041 Civitella in Val di Chiana (AR)", "ph": [{"tel": "+393331597221", "show": "+39 3331597221"}], "wa": ["+393331597221"], "e": ["info@zone-creative.com"], "w": "https://www.zone-creative.com", "o": "", "m": "Via di Basserone 53, Loc. Badia al Pino, 52041 Civitella in Val di Chiana (AR)"}, {"n": "BTT Precious Metal Plants", "c": "f", "r": "Toscana", "t": "Marciano della Chiana", "p": "Andrea Zoeddu", "f": "", "a": "Via combarbia 16, 52047 Marciano della Chiana (AR)", "ph": [{"tel": "+390575356841", "show": "+39 0575356841"}, {"tel": "+393404239422", "show": "+39 3404239422"}], "wa": ["+393404239422"], "e": ["info@bttimpianti.it"], "w": "https://www.bttimpianti.it", "o": "", "m": "Via combarbia 16, 52047 Marciano della Chiana (AR)"}, {"n": "Stellina - Macchine per orafi / Goldsmith machines", "c": "f", "r": "Lombardia", "t": "Trezzano sul Naviglio", "p": "Joseph Noujeim", "f": "", "a": "Via Mario Pagano 29, 20090 Trezzano sul Naviglio (MI)", "ph": [{"tel": "+390248405819", "show": "+39 0248405819"}, {"tel": "+393358110134", "show": "+39 3358110134"}], "wa": ["+393358110134"], "e": ["joseph.n@stellinamilano.com", "joseph.noujeim@yahoo.it"], "w": "", "o": "", "m": "Via Mario Pagano 29, 20090 Trezzano sul Naviglio (MI)"}, {"n": "Citis Arcobaleno", "c": "f", "r": "Toscana", "t": "Siena", "p": "Marco Mattesini", "f": "", "a": "Via Leonida Cialfi 25, 53100 Siena", "ph": [{"tel": "+3905751420250", "show": "+39 05751420250"}], "wa": [], "e": [], "w": "", "o": "Autre adresse : Strada E n.1, Loc. San Zeno, 52100 Arezzo", "m": "Via Leonida Cialfi 25, 53100 Siena"}, {"n": "Luigi Dal Trozzo", "c": "f", "r": "Piemonte", "t": "Valenza", "p": "Mauro Carrea", "f": "", "a": "Via dell'Artigianato 47/49, 15048 Valenza (AL)", "ph": [{"tel": "+390131924344", "show": "+39 0131924344"}], "wa": [], "e": ["mauro.carrea@luigidaltrozzo.it"], "w": "", "o": "", "m": "45.0176654,8.6259507"}, {"n": "Diamond C2 Tools - C2 di Cipriani Ivan & C. s.a.s.", "c": "f", "r": "Veneto", "t": "Bassano del Grappa", "p": "", "f": "", "a": "Via delle Rose 11, 36061 Bassano del Grappa (VI)", "ph": [{"tel": "+390424566716", "show": "+39 0424566716"}, {"tel": "+393292244000", "show": "+39 3292244000"}], "wa": ["+393292244000"], "e": ["info@c2utensili.it"], "w": "https://www.c2utensili.it", "o": "", "m": "45.7329085,11.7063205"}, {"n": "Oro Franco di Franco Yuri", "c": "f", "r": "Veneto", "t": "Bolzano Vicentino", "p": "Yuri Franco", "f": "", "a": "Via dell'Artigianato 13, 36050 Bolzano Vicentino (VI)", "ph": [{"tel": "+390444350920", "show": "+39 0444350920"}, {"tel": "+393357265392", "show": "+39 3357265392"}], "wa": ["+393357265392"], "e": ["yuri@francofranco.it"], "w": "https://www.francofranco.it", "o": "", "m": "Via dell'Artigianato 13, 36050 Bolzano Vicentino (VI)"}, {"n": "Legor Group S.p.A. (siege)", "c": "f", "r": "Veneto", "t": "Bressanvido", "p": "", "f": "", "a": "Via del Lavoro 1, 36050 Bressanvido (VI)", "ph": [{"tel": "+390444467911", "show": "+39 0444467911"}], "wa": [], "e": ["info@legor.com"], "w": "https://www.legor.com/", "o": "", "m": "45.6547267,11.6596344"}, {"n": "Lorenzato", "c": "f", "r": "Veneto", "t": "Caldogno", "p": "Alessandra Fantin", "f": "Customer care", "a": "Via Sette 52, 36030 Caldogno (VI)", "ph": [{"tel": "+390444905365", "show": "+39 0444905365"}, {"tel": "+393486062275", "show": "+39 3486062275"}], "wa": ["+393486062275"], "e": ["commerciale@lorenzato.com"], "w": "https://lorenzato.com", "o": "Technology for gold and cosmetic industry", "m": "Via Sette 52, 36030 Caldogno (VI)"}, {"n": "OPI Group", "c": "f", "r": "Veneto", "t": "Isola Vicentina", "p": "Andrea Veronese", "f": "Ceo", "a": "Via Europa 45 H, 36033 Isola Vicentina (VI)", "ph": [{"tel": "+393400076763", "show": "+39 3400076763"}], "wa": ["+393400076763"], "e": ["sales@opigroup.it"], "w": "https://www.opigroup.it", "o": "SDI : M5UXCRI", "m": "Via Europa 45 H, 36033 Isola Vicentina (VI)"}, {"n": "Saloua Ghribi Consulting", "c": "f", "r": "Tunisie", "t": "Ariana", "p": "Saloua Ghribi", "f": "Agent de commerce", "a": "RUE 18 JANVIER BU-C-408 ARIANA CENTRE 2080 ARIANA TUNISIE", "ph": [{"tel": "+21697113381", "show": "+216 97113381"}, {"tel": "+393470531409", "show": "+39 3470531409"}], "wa": ["+21697113381", "+393470531409"], "e": ["sgcconsulting.info@gmail.com"], "w": "", "o": "", "m": "RUE 18 JANVIER BU-C-408 ARIANA CENTRE 2080 ARIANA TUNISIE"}, {"n": "IT-TECH", "c": "f", "r": "Veneto", "t": "Romano d'Ezzelino", "p": "Gian Luigi Poier", "f": "", "a": "VIA NARDI,110/A 36060 ROMANO D'ezzelino vi italy", "ph": [{"tel": "+393341294927", "show": "+39 3341294927"}, {"tel": "+390424818038", "show": "+39 0424818038"}], "wa": ["+393341294927"], "e": ["gianni@it-tech.it"], "w": "https://www.it-tech.it", "o": "production of equipements for chain machines", "m": "VIA NARDI,110/A 36060 ROMANO D'ezzelino vi italy"}, {"n": "Gesam", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "Giovanni gragnoli", "f": "", "a": "via A.grandi,91 52100 arezzo-italy", "ph": [{"tel": "+390575300856", "show": "+39 0575300856"}], "wa": [], "e": ["gesampreziosi@gmail.com"], "w": "", "o": "", "m": "via A.grandi,91 52100 arezzo-italy"}, {"n": "Jradi Gioielli", "c": "f", "r": "Piemonte", "t": "Valenza", "p": "Islam Jradi", "f": "", "a": "VIA IX FEBBRAIO 19/21 -15048 VALENZA  (Al)", "ph": [{"tel": "+390131486177", "show": "+39 0131486177"}, {"tel": "+393484994512", "show": "+39 3484994512"}], "wa": ["+393484994512"], "e": ["jradi.gioielli@gmail.com"], "w": "", "o": "", "m": "VIA IX FEBBRAIO 19/21 -15048 VALENZA  (Al)"}, {"n": "Scelsi", "c": "f", "r": "Piemonte", "t": "Valenza", "p": "", "f": "", "a": "sede legale:via morononi 13/A 27035 MEDE (pv) showroom:via camurati,45/A 15048 valenza (AL)", "ph": [{"tel": "+390131954869", "show": "+39 0131954869"}, {"tel": "+393662548919", "show": "+39 3662548919"}], "wa": ["+393662548919"], "e": ["commerciale@scelsigioielli.it"], "w": "https://www.scelsigioielli.it", "o": "", "m": "Via Camurati 45/A, 15048 Valenza (AL)"}, {"n": "I by Iannelli", "c": "f", "r": "Piemonte", "t": "Valenza", "p": "", "f": "", "a": "via trieste,18 15048 valnza italy", "ph": [{"tel": "+390131924617", "show": "+39 0131924617"}], "wa": [], "e": ["info@ibyiannelli.it"], "w": "https://www.ibyiannelli.it", "o": "", "m": "via trieste,18 15048 valnza italy"}, {"n": "A Point - Park Hotel Arezzo", "c": "h", "r": "Toscana", "t": "Arezzo", "p": "", "f": "", "a": "park HOTEL AREZZO : A1 uscita Arezzo localita Battifolle,36 T 52100 Arezzo / toscana", "ph": [{"tel": "+390575363312", "show": "+39 0575363312"}], "wa": [], "e": ["info@arezzoparkhotel.com"], "w": "https://www.apointhotelsresorts.com", "o": "Hotel", "m": "Park Hotel Arezzo, Localita Battifolle 36, 52100 Arezzo"}, {"n": "Ristorante La Torretta", "c": "h", "r": "Toscana", "t": "Arezzo", "p": "", "f": "", "a": "di roggiolani Marco &C,sas S, zeno - strada Arezzo", "ph": [{"tel": "+390575998426", "show": "+39 0575998426"}], "wa": [], "e": ["rtorretta@tin.it"], "w": "https://www.ristorantelatorratta.net", "o": "Restaurant", "m": "Ristorante La Torretta, San Zeno, Arezzo"}, {"n": "Villa Solatia", "c": "h", "r": "Veneto", "t": "Caldogno", "p": "", "f": "", "a": "via stadio16 caldogno vicenza", "ph": [{"tel": "+393894441533", "show": "+39 3894441533"}], "wa": ["+393894441533"], "e": [], "w": "https://www.villasolatia.com", "o": "Hotel - Palladian life style", "m": "Villa Solatia, Via Stadio 16, Caldogno (VI)"}, {"n": "Hotel Ristorante Giada", "c": "h", "r": "Veneto", "t": "Grumolo delle Abbadesse", "p": "", "f": "", "a": "via nazionale 8/10 36040 Grumolo delle Abbadesse Vi", "ph": [{"tel": "+390444580057", "show": "+39 0444580057"}], "wa": [], "e": ["info@hotelristorantegiade.com"], "w": "https://www.hotelristorantegiada.com", "o": "Hotel et restaurant", "m": "Hotel Ristorante Giada, via nazionale 8/10 36040 Grumolo delle Abbadesse Vi"}, {"n": "Hotel Villa", "c": "h", "r": "Veneto", "t": "Villaverla", "p": "", "f": "", "a": "via roma,1 36030 villaverla VI", "ph": [{"tel": "+390445350396", "show": "+39 0445350396"}], "wa": [], "e": ["info@hotelvilla.net"], "w": "https://www.hotelvilla.net", "o": "Hotel", "m": "Hotel Villa, via roma,1 36030 villaverla VI"}, {"n": "Oro Macchine", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "", "f": "", "a": "STRADA C,38 zona ind,le san zeno 52100 Arezzo italy", "ph": [{"tel": "+390575959559", "show": "+39 0575959559"}], "wa": [], "e": ["oromacchine@libero.it"], "w": "https://www.oromacchine.com", "o": "", "m": "STRADA C,38 zona ind,le san zeno 52100 Arezzo italy"}, {"n": "F.lli Bertoncello", "c": "f", "r": "Veneto", "t": "Romano d'Ezzelino", "p": "Sara Zanon", "f": "Sales departement", "a": "VIA COL ROIGO,22 ZI 36060 romano d'ezzelino vicenza itlay", "ph": [{"tel": "+393488865280", "show": "+39 3488865280"}, {"tel": "+39042431852", "show": "+39 042431852"}], "wa": ["+393488865280"], "e": ["gb.bertoncello@gb-bertoncello.com"], "w": "https://gb-bertoncello.com", "o": "", "m": "VIA COL ROIGO,22 ZI 36060 romano d'ezzelino vicenza itlay"}, {"n": "ALO", "c": "f", "r": "Toscana", "t": "Arezzo", "p": "Niccolo Pisciotta", "f": "Photo specialist", "a": "VIA C,DONAT-CATTIN,125 52100, Arezzo italy", "ph": [{"tel": "+393791309595", "show": "+39 3791309595"}], "wa": ["+393791309595"], "e": ["np@alo.zone"], "w": "https://www.alo.zone", "o": "", "m": "VIA C,DONAT-CATTIN,125 52100, Arezzo italy"}, {"n": "Opticom Graphite S.r.l.", "c": "f", "r": "Veneto", "t": "Romano d'Ezzelino", "p": "", "f": "", "a": "Via dell'Artigianato, 8, 36060 Romano d'Ezzelino VI, Italie", "ph": [{"tel": "+390424513210", "show": "+39 0424513210"}], "wa": [], "e": [], "w": "http://www.opticomgraphite.com/", "o": "", "m": "Via dell'Artigianato, 8, 36060 Romano d'Ezzelino VI, Italie"}];
 
-  function mapUrl(c) {
-    if (c.lat == null) {
-      return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(c.address);
-    }
-    let u = "https://www.google.com/maps/search/?api=1&query=" +
-            encodeURIComponent(c.lat + "," + c.lng);
-    if (c.placeId) u += "&query_place_id=" + encodeURIComponent(c.placeId);
-    return u;
+const IC = {
+  tel:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
+  wa:'<path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/>',
+  mail:'<path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/>',
+  web:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/>',
+  pin:'<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>'
+};
+const svg = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = s => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const mapUrl = m => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(m);
+
+const st = {q:"", c:"", r:""};
+const ORDER = [...new Set(DATA.map(d=>d.r))];
+ORDER.sort((a,b)=> DATA.filter(d=>d.r===b).length - DATA.filter(d=>d.r===a).length);
+
+function match(d, skipRegion){
+  if (st.c && d.c !== st.c) return false;
+  if (!skipRegion && st.r && d.r !== st.r) return false;
+  if (st.q){
+    const hay = norm([d.n,d.p,d.t,d.a,d.o].join(" "));
+    return st.q.split(/\s+/).every(w => hay.includes(w));
   }
+  return true;
+}
 
-  function esc(s) {
-    return String(s).replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+function card(d){
+  const acts = [`<a class="map" href="${mapUrl(d.m)}" target="_blank" rel="noopener">${svg("pin")}Map</a>`];
+  d.ph.forEach(p => acts.push(`<a href="tel:${p.tel}">${svg("tel")}${esc(p.show)}</a>`));
+  d.wa.forEach(t => acts.push(`<a class="wa" href="https://wa.me/${t.replace("+","")}" target="_blank" rel="noopener">${svg("wa")}WhatsApp</a>`));
+  d.e.forEach(e => acts.push(`<a href="mailto:${esc(e)}">${svg("mail")}Email</a>`));
+  if (d.w) acts.push(`<a href="${esc(d.w)}" target="_blank" rel="noopener">${svg("web")}Site</a>`);
+  return `<article class="card ${d.c}">
+    <span class="town">${esc(d.t)}</span>
+    <h3>${esc(d.n)}</h3>
+    ${d.p ? `<p class="who"><b>${esc(d.p)}</b>${d.f ? " &middot; " + esc(d.f) : ""}</p>` : ""}
+    <p>${esc(d.a)}</p>
+    ${d.o ? `<p>${esc(d.o)}</p>` : ""}
+    <div class="acts">${acts.join("")}</div>
+  </article>`;
+}
+
+function render(){
+  // pastilles regions (comptage selon recherche + type)
+  const chips = [`<button data-r="" class="${st.r===""?"on":""}">Toutes<b>${DATA.filter(d=>match(d,true)).length}</b></button>`]
+    .concat(ORDER.map(r => {
+      const n = DATA.filter(d => d.r===r && match(d,true)).length;
+      return n ? `<button data-r="${esc(r)}" class="${st.r===r?"on":""}">${esc(r)}<b>${n}</b></button>` : "";
+    }));
+  document.getElementById("chips").innerHTML = chips.join("");
+
+  const found = DATA.filter(d => match(d,false));
+  document.getElementById("count").textContent = found.length + (found.length>1 ? " resultats" : " resultat");
+  document.getElementById("x").style.display = st.q ? "block" : "none";
+
+  if (!found.length){
+    document.getElementById("list").innerHTML = '<div class="empty">Aucun resultat.</div>';
+    return;
   }
-
-  // Groupement par ville
-  const byCity = {};
-  companies.forEach(c => (byCity[c.city] = byCity[c.city] || []).push(c));
-
-  const html = Object.keys(byCity).sort().map(city => {
-    const items = byCity[city];
-    const cards = items.map(c => `
-      <article class="card">
-        <h3>${esc(c.name)}</h3>
-        ${c.contact ? `<p><strong>${esc(c.contact)}</strong>${c.role ? " - " + esc(c.role) : ""}</p>` : ""}
-        <p>${esc(c.address)}</p>
-        ${c.note ? `<p>${esc(c.note)}</p>` : ""}
-        <a class="map" href="${mapUrl(c)}" target="_blank" rel="noopener">Ouvrir sur la map</a>
-        <div class="extra">
-          ${c.phone ? `<a href="tel:${c.phone.replace(/\s/g, "")}">${esc(c.phone)}</a>` : ""}
-          ${c.phone2 ? `<a href="tel:${c.phone2.replace(/\s/g, "")}">${esc(c.phone2)}</a>` : ""}
-          ${c.whatsapp ? `<a href="https://wa.me/${c.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ""}
-          ${c.email ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : ""}
-          ${c.site ? `<a href="${esc(c.site)}" target="_blank" rel="noopener">Site web</a>` : ""}
-        </div>
-      </article>`).join("");
-    return `<section><h2>${esc(city)}<small>${items.length} societe${items.length > 1 ? "s" : ""}</small></h2><div class="cards">${cards}</div></section>`;
+  document.getElementById("list").innerHTML = ORDER.map(r => {
+    const items = found.filter(d => d.r===r)
+      .sort((a,b)=> a.t.localeCompare(b.t) || a.n.localeCompare(b.n));
+    if (!items.length) return "";
+    return `<section><h2>${esc(r)}<small>${items.length}</small></h2><div class="grid">${items.map(card).join("")}</div></section>`;
   }).join("");
+}
 
-  document.getElementById("list").innerHTML = html +
-    '<p class="note">Verifiez les adresses par telephone avant de vous deplacer.</p>';
+const q = document.getElementById("q");
+q.addEventListener("input", () => { st.q = norm(q.value).trim(); render(); });
+document.getElementById("x").addEventListener("click", () => { q.value=""; st.q=""; render(); q.focus(); });
+document.getElementById("tabs").addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  st.c = b.dataset.c;
+  document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("on", x===b));
+  render();
+});
+document.getElementById("chips").addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  st.r = b.dataset.r; render();
+});
+render();
 </script>
 </body>
 </html>
